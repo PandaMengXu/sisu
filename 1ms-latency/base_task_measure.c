@@ -52,7 +52,7 @@ int main(int argc, char** argv)
     for (int k = 0; k < atoi(argv[1]); ++k) {
 
         int sum = 0;
-        for (int j = 0; j < 9; ++j)
+        for (int j = 0; j < 25; ++j)
         for (unsigned long i = 1; i < count; ++i) {
         	if (i%2 == 0) sum += buffer[temp];
         	else sum -= buffer[temp];
