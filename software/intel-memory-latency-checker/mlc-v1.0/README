@@ -1,0 +1,7 @@
+Copyright (c) 2013, Intel Corporation
+Intel(R) Memory Latency Checker- README
+
+This tool measures memory latencies on Linux-based platforms. The tool has the following requirements:
+(1) Following libraries need to be present for dynamic linking: GNU C Library (glibc/lpthread) and libnuma library
+(2) MSR driver should be loaded. This can typically be done with 'modprobe msr', if it is not already included.
+(3) root priviledges are required

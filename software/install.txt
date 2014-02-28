@@ -1,0 +1,12 @@
+###
+CPU-G: A tool to measure performance of the machine like CPU-Z on windows
+###
+#how to install cpu-g
+   sudo dpkg -i cpu-g_0.9.0_i386.deb 
+   sudo apt-get -f install 
+#how to use CPU-G on Ubuntu
+How to run CPU-G on Ubuntu
+How to install it is quiet simple, open your terminal or type ALT + F2. then type "cpu-g" there. The CPU-G should running on. [thanks to tahutek.net]
+
+
+
