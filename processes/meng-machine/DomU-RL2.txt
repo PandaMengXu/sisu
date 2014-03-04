@@ -1,0 +1,66 @@
+Warning: bad ps syntax, perhaps a bogus '-'? See http://procps.sf.net/faq.html
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  3.3  0.4  24344  2304 ?        Ss   18:25   0:00 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    18:25   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    18:25   0:00 [ksoftirqd/0]
+root         4  0.0  0.0      0     0 ?        S    18:25   0:00 [kworker/0:0]
+root         5  0.0  0.0      0     0 ?        S<   18:25   0:00 [kworker/0:0H]
+root         6  0.0  0.0      0     0 ?        S    18:25   0:00 [kworker/u:0]
+root         7  0.0  0.0      0     0 ?        S<   18:25   0:00 [kworker/u:0H]
+root         8  0.0  0.0      0     0 ?        S    18:25   0:00 [migration/0]
+root         9  0.0  0.0      0     0 ?        S    18:25   0:00 [rcu_bh]
+root        10  0.1  0.0      0     0 ?        S    18:25   0:00 [rcu_sched]
+root        11  0.0  0.0      0     0 ?        S    18:25   0:00 [watchdog/0]
+root        12  0.0  0.0      0     0 ?        S<   18:25   0:00 [cpuset]
+root        13  0.0  0.0      0     0 ?        S<   18:25   0:00 [khelper]
+root        14  0.0  0.0      0     0 ?        S    18:25   0:00 [kdevtmpfs]
+root        15  0.0  0.0      0     0 ?        S<   18:25   0:00 [netns]
+root        16  0.0  0.0      0     0 ?        S    18:25   0:00 [xenwatch]
+root        17  1.8  0.0      0     0 ?        S    18:25   0:00 [xenbus]
+root        18  0.0  0.0      0     0 ?        S    18:25   0:00 [bdi-default]
+root        19  0.0  0.0      0     0 ?        S<   18:25   0:00 [kintegrityd]
+root        20  0.0  0.0      0     0 ?        S<   18:25   0:00 [kblockd]
+root        21  0.0  0.0      0     0 ?        S<   18:25   0:00 [ata_sff]
+root        22  0.0  0.0      0     0 ?        S    18:25   0:00 [khubd]
+root        23  0.0  0.0      0     0 ?        S<   18:25   0:00 [md]
+root        24  0.0  0.0      0     0 ?        S<   18:25   0:00 [devfreq_wq]
+root        25  0.0  0.0      0     0 ?        S    18:25   0:00 [kworker/0:1]
+root        27  0.0  0.0      0     0 ?        S    18:25   0:00 [khungtaskd]
+root        28  0.0  0.0      0     0 ?        S    18:25   0:00 [kswapd0]
+root        29  0.0  0.0      0     0 ?        SN   18:25   0:00 [ksmd]
+root        30  0.0  0.0      0     0 ?        S    18:25   0:00 [fsnotify_mark]
+root        31  0.0  0.0      0     0 ?        S    18:25   0:00 [ecryptfs-kthrea]
+root        32  0.0  0.0      0     0 ?        S<   18:25   0:00 [crypto]
+root        43  0.0  0.0      0     0 ?        S<   18:25   0:00 [kthrotld]
+root        44  0.0  0.0      0     0 ?        S    18:25   0:00 [kworker/u:1]
+root        45  0.0  0.0      0     0 ?        S    18:25   0:00 [khvcd]
+root        46  0.0  0.0      0     0 ?        S<   18:25   0:00 [binder]
+root        65  0.0  0.0      0     0 ?        S<   18:25   0:00 [deferwq]
+root        66  0.0  0.0      0     0 ?        S<   18:25   0:00 [charger_manager]
+root        67  0.0  0.0      0     0 ?        S<   18:25   0:00 [kworker/0:1H]
+root        68  0.0  0.0      0     0 ?        S    18:25   0:00 [jbd2/xvda1-8]
+root        69  0.0  0.0      0     0 ?        S<   18:25   0:00 [ext4-dio-unwrit]
+root       157  0.0  0.1  17236   640 ?        S    18:25   0:00 upstart-udev-bridge --daemon
+root       159  0.0  0.2  21600  1268 ?        Ss   18:25   0:00 /sbin/udevd --daemon
+102        174  0.0  0.1  23820   936 ?        Ss   18:25   0:00 dbus-daemon --system --fork --activation=upstart
+syslog     217  0.0  0.2 253720  1500 ?        Sl   18:25   0:00 rsyslogd -c5
+root       241  0.0  0.1  21468   788 ?        S    18:25   0:00 /sbin/udevd --daemon
+root       242  0.0  0.1  21468   788 ?        S    18:25   0:00 /sbin/udevd --daemon
+root       307  0.0  0.5  49960  2836 ?        Ss   18:25   0:00 /usr/sbin/sshd -D
+root       356  0.0  0.0  15192   392 ?        S    18:25   0:00 upstart-socket-bridge --daemon
+root       527  0.0  0.1  15788   968 tty4     Ss+  18:25   0:00 /sbin/getty -8 38400 tty4
+root       537  0.0  0.1  15788   956 tty5     Ss+  18:25   0:00 /sbin/getty -8 38400 tty5
+root       549  0.0  0.1  15788   968 tty2     Ss+  18:25   0:00 /sbin/getty -8 38400 tty2
+root       552  0.0  0.1  15788   964 tty3     Ss+  18:25   0:00 /sbin/getty -8 38400 tty3
+root       559  0.0  0.1  15788   964 tty6     Ss+  18:25   0:00 /sbin/getty -8 38400 tty6
+root       572  0.0  0.1  19116   876 ?        Ss   18:25   0:00 cron
+daemon     573  0.0  0.0  16912   384 ?        Ss   18:25   0:00 atd
+root       583  0.0  0.1   4332   668 ?        Ss   18:25   0:00 acpid -c /etc/acpi/events -s /var/run/acpid.socket
+whoopsie   589  0.0  1.0 200040  5056 ?        Ssl  18:25   0:00 whoopsie
+root       622  0.0  0.1   4404   616 ?        S    18:25   0:00 /bin/sh /etc/init.d/ondemand background
+root       624  0.0  0.0   4312   352 ?        S    18:25   0:00 sleep 60
+root       631  0.1  0.3  54456  1592 hvc0     Ss   18:25   0:00 /bin/login --     
+root       633  0.0  0.1  15788   964 tty1     Ss+  18:25   0:00 /sbin/getty -8 38400 tty1
+root       675  0.0  0.0      0     0 ?        S    18:25   0:00 [flush-202:0]
+root       806  0.7  0.9  23552  4776 hvc0     S    18:25   0:00 -bash
+root       866  0.0  0.2  18164  1264 hvc0     R+   18:25   0:00 ps -aux
