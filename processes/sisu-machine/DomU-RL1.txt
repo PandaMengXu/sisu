@@ -1,0 +1,40 @@
+Linux litmus1 3.0.1 #1 SMP PREEMPT Sun Sep 15 03:08:45 CDT 2013 x86_64 x86_64 x86_64 GNU/Linux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.5  0.2  26668  2468 ?        Ss   10:26   0:00 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    10:26   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    10:26   0:00 [ksoftirqd/0]
+root         4  0.0  0.0      0     0 ?        S    10:26   0:00 [kworker/0:0]
+root         5  0.0  0.0      0     0 ?        S    10:26   0:00 [kworker/u:0]
+root         6  0.0  0.0      0     0 ?        S    10:26   0:00 [migration/0]
+root         7  0.0  0.0      0     0 ?        S    10:26   0:00 [watchdog/0]
+root         8  0.0  0.0      0     0 ?        S<   10:26   0:00 [cpuset]
+root         9  0.0  0.0      0     0 ?        S<   10:26   0:00 [khelper]
+root        10  0.0  0.0      0     0 ?        S<   10:26   0:00 [netns]
+root        11  0.0  0.0      0     0 ?        S    10:26   0:00 [xenwatch]
+root        12  0.0  0.0      0     0 ?        S    10:26   0:00 [xenbus]
+root        13  0.0  0.0      0     0 ?        S    10:26   0:00 [sync_supers]
+root        14  0.0  0.0      0     0 ?        S    10:26   0:00 [bdi-default]
+root        15  0.0  0.0      0     0 ?        S<   10:26   0:00 [kintegrityd]
+root        16  0.0  0.0      0     0 ?        S<   10:26   0:00 [kblockd]
+root        17  0.0  0.0      0     0 ?        S<   10:26   0:00 [ata_sff]
+root        18  0.0  0.0      0     0 ?        S    10:26   0:00 [khubd]
+root        19  0.0  0.0      0     0 ?        S<   10:26   0:00 [md]
+root        20  0.0  0.0      0     0 ?        S    10:26   0:00 [kworker/0:1]
+root        22  0.0  0.0      0     0 ?        S    10:26   0:00 [khungtaskd]
+root        23  0.0  0.0      0     0 ?        S    10:26   0:00 [kswapd0]
+root        24  0.0  0.0      0     0 ?        SN   10:26   0:00 [ksmd]
+root        25  0.0  0.0      0     0 ?        S    10:26   0:00 [fsnotify_mark]
+root        26  0.0  0.0      0     0 ?        S    10:26   0:00 [ecryptfs-kthrea]
+root        27  0.0  0.0      0     0 ?        S<   10:26   0:00 [crypto]
+root        38  0.0  0.0      0     0 ?        S<   10:26   0:00 [kthrotld]
+root        39  0.0  0.0      0     0 ?        S    10:26   0:00 [khvcd]
+root        40  0.0  0.0      0     0 ?        S    10:26   0:00 [kworker/u:1]
+root       178  0.0  0.0      0     0 ?        S    10:26   0:00 [jbd2/xvda1-8]
+root       179  0.0  0.0      0     0 ?        S<   10:26   0:00 [ext4-dio-unwrit]
+root       859  0.0  0.0      0     0 ?        S    10:26   0:00 [flush-202:0]
+root       884  0.0  0.1  21284  1036 ?        Ss   10:26   0:00 /sbin/udevd --daemon
+root       896  0.0  0.0  17312   640 ?        S    10:26   0:00 upstart-udev-bridge --daemon
+syslog     905  0.0  0.1 186148  1552 ?        Sl   10:26   0:00 rsyslogd -c5
+102        907  0.0  0.0  23848   720 ?        Ss   10:26   0:00 dbus-daemon --system --fork
+root       923  0.0  0.2  18184  2092 hvc0     Ss   10:26   0:00 bash
+root       938  0.0  0.1  15568  1156 hvc0     R+   10:28   0:00 ps aux

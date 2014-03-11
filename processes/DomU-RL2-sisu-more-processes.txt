@@ -1,0 +1,9 @@
+VSZ (virtual size in kilobytes), RSS (real memory size or resident set size in 1024 byte units), STAT (the process state code)
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      1026  0.0  0.0      0     0 ?        S    10:29   0:00 [kauditd]
+
+root      1143  0.1  0.3 584424  3892 ?        Sl   10:29   0:00 /usr/sbin/console-kit-daemon --no-daemon
+
+root      1210  0.0  0.3 193000  3264 ?        Sl   10:29   0:00 /usr/lib/policykit-1/polkitd --no-debug
+

@@ -1,0 +1,49 @@
+Warning: bad ps syntax, perhaps a bogus '-'? See http://procps.sf.net/faq.html
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.4  0.4  24300  2304 ?        Ss   13:50   0:00 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    13:50   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    13:50   0:00 [ksoftirqd/0]
+root         4  0.0  0.0      0     0 ?        S    13:50   0:00 [kworker/0:0]
+root         5  0.0  0.0      0     0 ?        S<   13:50   0:00 [kworker/0:0H]
+root         6  0.0  0.0      0     0 ?        S    13:50   0:00 [kworker/u:0]
+root         7  0.0  0.0      0     0 ?        S<   13:50   0:00 [kworker/u:0H]
+root         8  0.0  0.0      0     0 ?        S    13:50   0:00 [migration/0]
+root         9  0.0  0.0      0     0 ?        S    13:50   0:00 [rcu_bh]
+root        10  0.0  0.0      0     0 ?        S    13:50   0:00 [rcu_sched]
+root        11  0.0  0.0      0     0 ?        S    13:50   0:00 [watchdog/0]
+root        12  0.0  0.0      0     0 ?        S<   13:50   0:00 [cpuset]
+root        13  0.0  0.0      0     0 ?        S<   13:50   0:00 [khelper]
+root        14  0.0  0.0      0     0 ?        S    13:50   0:00 [kdevtmpfs]
+root        15  0.0  0.0      0     0 ?        S<   13:50   0:00 [netns]
+root        16  0.0  0.0      0     0 ?        S    13:50   0:00 [xenwatch]
+root        17  0.2  0.0      0     0 ?        S    13:50   0:00 [xenbus]
+root        18  0.0  0.0      0     0 ?        S    13:50   0:00 [bdi-default]
+root        19  0.0  0.0      0     0 ?        S<   13:50   0:00 [kintegrityd]
+root        20  0.0  0.0      0     0 ?        S<   13:50   0:00 [kblockd]
+root        21  0.0  0.0      0     0 ?        S<   13:50   0:00 [ata_sff]
+root        22  0.0  0.0      0     0 ?        S    13:50   0:00 [khubd]
+root        23  0.0  0.0      0     0 ?        S<   13:50   0:00 [md]
+root        24  0.0  0.0      0     0 ?        S<   13:50   0:00 [devfreq_wq]
+root        25  0.0  0.0      0     0 ?        S    13:50   0:00 [kworker/0:1]
+root        27  0.0  0.0      0     0 ?        S    13:50   0:00 [khungtaskd]
+root        28  0.0  0.0      0     0 ?        S    13:50   0:00 [kswapd0]
+root        29  0.0  0.0      0     0 ?        SN   13:50   0:00 [ksmd]
+root        30  0.0  0.0      0     0 ?        S    13:50   0:00 [fsnotify_mark]
+root        31  0.0  0.0      0     0 ?        S    13:50   0:00 [ecryptfs-kthrea]
+root        32  0.0  0.0      0     0 ?        S<   13:50   0:00 [crypto]
+root        43  0.0  0.0      0     0 ?        S<   13:50   0:00 [kthrotld]
+root        44  0.0  0.0      0     0 ?        S    13:50   0:00 [kworker/u:1]
+root        45  0.0  0.0      0     0 ?        S    13:50   0:00 [khvcd]
+root        46  0.0  0.0      0     0 ?        S<   13:50   0:00 [binder]
+root        65  0.0  0.0      0     0 ?        S<   13:50   0:00 [deferwq]
+root        66  0.0  0.0      0     0 ?        S<   13:50   0:00 [charger_manager]
+root        67  0.0  0.0      0     0 ?        S<   13:50   0:00 [kworker/0:1H]
+root        68  0.0  0.0      0     0 ?        S    13:50   0:00 [jbd2/xvda1-8]
+root        69  0.0  0.0      0     0 ?        S<   13:50   0:00 [ext4-dio-unwrit]
+root       697  0.0  0.0      0     0 ?        S    13:50   0:00 [flush-202:0]
+root       965  0.0  0.2  21340  1056 ?        Ss   13:51   0:00 /sbin/udevd --daemon
+102        976  0.0  0.1  23820   692 ?        Ss   13:51   0:00 dbus-daemon --system --fork --activation=upstart
+root       979  0.0  0.0  17236   380 ?        S    13:51   0:00 upstart-udev-bridge --daemon
+root       988  0.0  0.4  18276  2216 hvc0     Ss   13:51   0:00 bash
+syslog     989  0.0  0.3 122648  1536 ?        Sl   13:51   0:00 rsyslogd -c5
+root      2041  0.0  0.2  15284  1132 hvc0     R+   13:54   0:00 ps -aux

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7]><html class="iem7" lang="en" dir="ltr"><![endif]-->
+<!--[if (lte IE 6)&(!IEMobile)]><html class="ie6 ie6-7 ie6-8" lang="en" dir="ltr"><![endif]-->
+<!--[if (IE 7)&(!IEMobile)]><html class="ie7 ie6-7 ie6-8" lang="en" dir="ltr"><![endif]-->
+<!--[if (IE 8)&(!IEMobile)]><html class="ie8 ie6-8" lang="en" dir="ltr"><![endif]-->
+<!--[if (gte IE 9)|(gt IEMobile 7)]><!--><html class="ie9up ie9" lang="en" dir="ltr"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/terms/"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+  xmlns:og="http://ogp.me/ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:sioc="http://rdfs.org/sioc/ns#"
+  xmlns:sioct="http://rdfs.org/sioc/types#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"><!--<![endif]-->
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+<meta charset="utf-8" />
+<script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script><link rel="shortlink" href="http://software.intel.com/en-us/node/493768" />
+<link rel="shortcut icon" href="http://software.intel.com/sites/all/themes/isn3/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="canonical" href="http://software.intel.com/en-us/articles/intelr-memory-latency-checker" />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<meta content="Intel® Memory Latency Checker" about="/en-us/articles/intelr-memory-latency-checker" property="dc:title" />
+<meta about="/en-us/articles/intelr-memory-latency-checker" property="sioc:num_replies" content="4" datatype="xsd:integer" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="cleartype" content="on">
+<title>Intel® Memory Latency Checker</title>
+
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/default/files/css/css_pbm0lsQQJ7A7WCCIMgxLho6mI_kBNgznNUWmTWcnfoE.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/default/files/css/css_6LZi1F7pVTDjGrtR8TfuCblLtoBPiWDVj6Ei9lPHT_M.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/default/files/css/css_CX_q2CFGDS5Og_X8FAvHXqOSkWDyKCJokNx_opyUyOk.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/default/files/css/css_ivF3E3qlNDoDDRrKYFYTDkKcQLFsmAP6YHuu-C2qWGw.css" media="all" />
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/default/files/css/css_5_EBsvYf_U3gqgv1Idal1sImw7zcXB1kaIR6NOugp8o.css" media="print" />
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/default/files/css/css_syt_KHql4yxkXR699pumSK6-a-OPVICYipOCqkR6pN0.css" media="all" />
+
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/all/themes/isn3/css/ie/ie.less.css?n1p2g8" media="all" />
+<![endif]-->
+
+<!--[if lte IE 8]>
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/all/themes/isn3/css/ie/ie-lte-8.less.css?n1p2g8" media="all" />
+<![endif]-->
+
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/all/themes/isn3/css/ie/ie-lte-9.less.css?n1p2g8" media="all" />
+<![endif]-->
+
+<!--[if IE 8]>
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/all/themes/isn3/css/ie/ie-8.less.css?n1p2g8" media="all" />
+<![endif]-->
+
+<!--[if IE 9]>
+<link type="text/css" rel="stylesheet" href="http://software.intel.com/sites/all/themes/isn3/css/ie/ie-9.less.css?n1p2g8" media="all" />
+<![endif]-->
+<script src="http://software.intel.com/sites/default/files/js/js_xAPl0qIk9eowy_iS9tNkCWXLUVoat94SQT48UBCFkyQ.js"></script>
+<script src="http://software.intel.com/sites/default/files/js/js_CC-zfeuQHcDhFtVRuKW53h30TL7j_105J32Nz8b8R38.js"></script>
+<script src="http://software.intel.com/sites/default/files/js/js_8XA44OgHqVZ85TZB2rCfTeHrKhrbwdyd1k7WFjYaC4E.js"></script>
+<script src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+<script src="http://software.intel.com/sites/default/files/js/js_8_phGM7QmPCqCRvVZYOciV5qiR6qicNKEXgfg50t5GU.js"></script>
+<script>var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-17890616-1"]);var pluginUrl = 
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+_gaq.push(["_setDomainName", ".intel.com"]);
+_gaq.push(["_setAllowLinker", true]);_gaq.push(['_setCustomVar', 1, "locale-code", "en", 3]);_gaq.push(['_setCustomVar', 2, "content", "Article||Server|Linux*", 3]);_gaq.push(['_setCustomVar', 3, "content-aud", "Server|Developers||", 3]);_gaq.push(['_setCustomVar', 4, "content-meta", "||", 3]);_gaq.push(['_setCustomVar', 5, "member", "f888b2f6-b8c4-1bc4-a56f-ee42e01f1a9d|||", 3]);_gaq.push(['_setCustomVar', 6, "idz-node", "493768", 3]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();</script>
+<script src="http://software.intel.com/sites/default/files/js/js_BtxtDk9arnOu9MwA8zUZQ6R_xUYqXQOrleJD-sU6_9o.js"></script>
+<script src="http://software.intel.com/sites/default/files/js/js_HkkHGJyRTaMzUEThjP7_LmxumsSH8OirH0thN4FYSvI.js"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"en-us\/","ajaxPageState":{"theme":"isn3","theme_token":"3BPhAlPqYAAxHau9wBeaW8BxhrQIpyoeaQ23rGgAqME","js":{"sites\/all\/modules\/contrib\/block_refresh\/js\/block_refresh.js":1,"sites\/all\/themes\/isn3\/js\/google-track.min.js":1,"sites\/all\/themes\/isn3\/js\/widgets\/jcarousel_fix.min.js":1,"sites\/all\/themes\/isn3\/js\/plupload.min.js":1,"sites\/all\/themes\/idzen\/js\/breakpoints.min.js":1,"sites\/all\/themes\/idzen\/js\/utils\/redraw-siblings.min.js":1,"sites\/all\/themes\/idzen\/js\/responsive\/nav-menu-widget.min.js":1,"sites\/all\/themes\/idzen\/js\/responsive\/mobile-icon-button-widget.min.js":1,"sites\/all\/themes\/idzen\/js\/responsive\/language-selector.min.js":1,"sites\/all\/themes\/idzen\/js\/responsive\/look-for-intel-widget.min.js":1,"sites\/all\/themes\/idzen\/js\/responsive\/user-login-widget.min.js":1,"sites\/all\/themes\/idzen\/js\/responsive\/header-nav-menu-widget.min.js":1,"sites\/all\/themes\/zen\/js\/respond.js":1,"sites\/all\/modules\/custom\/idz_search\/js\/idz_search_block.min.js":1,"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"misc\/jquery.cookie.js":1,"sites\/all\/modules\/custom\/social_block\/social-block.min.js":1,"http:\/\/admin.brightcove.com\/js\/BrightcoveExperiences.js":1,"sites\/all\/libraries\/colorbox\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/modules\/contrib\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/contrib\/colorbox\/js\/colorbox_load.js":1,"sites\/all\/modules\/custom\/intel_metrics\/js\/qualtrics.js":1,"sites\/all\/modules\/contrib\/panels\/js\/panels.js":1,"sites\/all\/modules\/contrib\/quote\/quote.js":1,"sites\/all\/modules\/contrib\/views_slideshow\/js\/views_slideshow.js":1,"sites\/all\/modules\/contrib\/google_analytics\/googleanalytics.js":1,"0":1,"sites\/all\/themes\/idzen\/js\/vendors\/jquery\/jquery-1.10.2.min.js":1,"sites\/all\/themes\/idz_admin\/js\/chosen.jquery.min.js":1,"sites\/all\/themes\/idz_admin\/js\/custom-chosen.min.js":1,"sites\/all\/themes\/idzen\/js\/jquery-noconflict.min.js":1,"sites\/all\/themes\/isn3\/js\/header.min.js":1,"sites\/all\/themes\/isn3\/js\/colorbox_alter.min.js":1,"sites\/all\/themes\/isn3\/js\/tabs.min.js":1,"sites\/all\/themes\/isn3\/js\/collapsible.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shCore.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushBash.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushCpp.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushCSharp.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushCss.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushFortran.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushJava.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushJScript.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushPerl.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushPhp.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushPlain.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushPython.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushR.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushRuby.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushSql.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/scripts\/shBrushXml.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/intel-filter.min.js":1,"sites\/all\/themes\/isn3\/..\/zen\/js\/respond.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/vendors\/jquery\/jquery-1.10.2.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/plugins\/jquery.breakpoint.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/jquery-noconflict.min.js":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/idzen-init.min.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/custom\/bds\/bds.css":1,"modules\/book\/book.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/contrib\/date\/date_api\/date.css":1,"sites\/all\/modules\/contrib\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"sites\/all\/modules\/contrib\/mollom\/mollom.css":1,"modules\/node\/node.css":1,"sites\/all\/modules\/custom\/node_attachments_block\/node-attachments-block.less.css":1,"sites\/all\/modules\/custom\/social_block\/social-block.less.css":1,"modules\/user\/user.css":1,"modules\/forum\/forum.css":1,"sites\/all\/modules\/contrib\/views\/css\/views.css":1,"sites\/all\/modules\/contrib\/block_refresh\/css\/block_refresh.css":1,"sites\/all\/libraries\/colorbox\/example1\/colorbox.css":1,"sites\/all\/modules\/contrib\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/contrib\/oembed\/oembed.base.css":1,"sites\/all\/modules\/contrib\/oembed\/oembed.theme.css":1,"sites\/all\/modules\/contrib\/panels\/css\/panels.css":1,"sites\/all\/modules\/contrib\/quote\/quote.css":1,"sites\/all\/modules\/contrib\/views_slideshow\/views_slideshow.css":1,"modules\/contextual\/contextual.css":1,"modules\/locale\/locale.css":1,"sites\/all\/themes\/idz_admin\/css\/custom-chosen.less.css":1,"sites\/all\/themes\/idz_admin\/css\/chosen.min.css":1,"sites\/all\/modules\/custom\/intel_advanced_forum_style\/styles\/idz\/advanced-forum.idz.images.css":1,"sites\/all\/modules\/custom\/intel_advanced_forum_style\/styles\/idz\/advanced-forum.idz.structure.css":1,"sites\/all\/themes\/adaptivetheme\/adaptivetheme\/css\/at.base.css":1,"sites\/all\/themes\/adaptivetheme\/adaptivetheme\/css\/at.layout.css":1,"sites\/all\/themes\/adaptivetheme\/adaptivetheme\/css\/at.messages.css":1,"sites\/all\/themes\/isn3\/css\/html-elements.css":1,"sites\/all\/themes\/isn3\/css\/forms.css":1,"sites\/all\/themes\/isn3\/css\/tables.css":1,"sites\/all\/themes\/isn3\/css\/fields.css":1,"sites\/all\/themes\/isn3\/css\/page.less.css":1,"sites\/all\/themes\/isn3\/css\/articles.css":1,"sites\/all\/themes\/isn3\/css\/comments.less.css":1,"sites\/all\/themes\/isn3\/css\/blocks.less.css":1,"sites\/all\/themes\/isn3\/css\/forum-page.less.css":1,"sites\/all\/themes\/isn3\/css\/views.less.css":1,"sites\/all\/themes\/isn3\/css\/bootstrap-idz.less.css":1,"sites\/all\/themes\/isn3\/css\/search.less.css":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/styles\/shCore.css":1,"sites\/all\/themes\/isn3\/..\/idzen\/js\/syntaxhighlighter\/styles\/shThemeIntel.css":1,"sites\/all\/themes\/isn3\/..\/idzen\/css\/export.css":1,"sites\/all\/themes\/isn3\/..\/idzen\/css\/components\/images.css":1,"sites\/all\/themes\/isn3\/css\/print.css":1,"sites\/all\/themes\/isn3\/css\/isn3.responsive.style.less.css":1,"sites\/all\/themes\/isn3\/css\/isn3.responsive.gpanels.css":1,"sites\/all\/themes\/isn3\/css\/ie\/ie.less.css":1,"sites\/all\/themes\/isn3\/css\/ie\/ie-lte-8.less.css":1,"sites\/all\/themes\/isn3\/css\/ie\/ie-lte-9.less.css":1,"sites\/all\/themes\/isn3\/css\/ie\/ie-8.less.css":1,"sites\/all\/themes\/isn3\/css\/ie\/ie-9.less.css":1}},"colorbox":{"transition":"elastic","speed":"350","opacity":"0.85","slideshow":false,"slideshowAuto":true,"slideshowSpeed":"2500","slideshowStart":"start slideshow","slideshowStop":"stop slideshow","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"","overlayClose":true,"maxWidth":"1280px","maxHeight":"100%","initialWidth":"575","initialHeight":"566","fixed":false,"scrolling":false},"jcarousel":{"ajaxPath":"\/en-us\/jcarousel\/ajax\/views"},"quote_nest":"2","language":{"language":"en","name":"English","native":"English","direction":"0","enabled":"1","plurals":"0","formula":"","domain":"","prefix":"en-us","weight":"-10","javascript":"","provider":"locale-url","dir":"ltr"},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|bz2|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|pkg|png|ppt|pptx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip","trackDomainMode":"1"},"isn3":{"language_url":{"language":"en","name":"English","native":"English","direction":"0","enabled":"1","plurals":"0","formula":"","domain":"","prefix":"en-us","weight":"-10","javascript":"","provider":"locale-url"}},"currentTheme":{"name":"isn3","path":"sites\/all\/themes\/isn3"}});</script>
+
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<!--[if lte IE 7]>
+  <script src="/sites/all/themes/isn3/js/legacy_IE_warning.js"></script>
+<![endif]-->
+<!--[if !IE]><!--><script>if(/*@cc_on!@*/false){document.documentElement.className+=' ie10';}</script><!--<![endif]-->
+</head>
+<body class="html not-front not-logged-in no-sidebars  theme-isn3 i18n-en site-name-hidden isn3">
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <header class="l-main-menu">
+  <div class="limiter">
+    <a class="logo-wrapper" href="/en-us">
+      <div class="logo" data-icon="W">
+        Developer Zone      </div>
+    </a>
+    <span class="mobile-icon-button user" data-icon="T"></span>
+    <section class="l-user-area">
+      <div id="header-user-display" class="user-display">
+      <div class="login">
+      <a href="https://secure-software.intel.com/partner/app/registration/developer?locale=en-us" class="register-link">Join today</a>      <a href="https://secure-software.intel.com/en-us/user/login?destination=node/493768" class="login-link">Log in</a>    </div>
+  </div>
+    </section>
+    <span class="mobile-icon-button nav-menu" data-icon="a"></span>
+      <nav class="menu">
+  <ul>
+    <li class="menu-item item-1">
+      Development      <ul>
+        <li class="category item-1">
+          OS          <ul>
+            <li><a class="google-track-navigation" href="/en-us/android">Android*</a></li>
+            <li><a class="google-track-navigation" href="/en-us/html5">HTML5</a></li>
+            <li><a class="google-track-navigation" href="/en-us/windows">Windows*</a></li>
+          </ul>
+        </li>
+        <li class="category item-2">
+          Device          <ul>
+            <li><a class="google-track-navigation" href="/en-us/windows">2-in-1 & Ultrabook</a></li>
+            <li><a class="google-track-navigation" href="/en-us/business-client">Business Client</a></li>
+            <li><a class="google-track-navigation" href="/en-us/embedded-development-tools">Embedded Systems</a></li>
+            <li><a class="google-track-navigation" href="/en-us/server-developer">Server, Workstation, HPC</a></li>
+            <li><a class="google-track-navigation" href="/en-us/tablets-phones">Tablets & Phones</a></li>
+          </ul>
+        </li>
+        <li class="category item-3">
+          Technology          <ul>
+            <li><a class="google-track-navigation" href="/en-us/energy-efficient-software">Energy Efficiency</a></li>
+            <li><a class="google-track-navigation" href="/en-us/intel-isa-extensions">ISA Extensions</a></li>
+            <li><a class="google-track-navigation" href="/en-us/oss">Open Source</a></li>
+            <li><a class="google-track-navigation" href="/en-us/vcsource/tools/perceptual-computing-sdk">Perceptual Computing</a></li>
+            <li><a class="google-track-navigation" href="/en-us/performance">Performance</a></li>
+            <li><a class="google-track-navigation" href="/en-us/security">Security</a></li>
+            <li><a class="google-track-navigation" href="/en-us/touch-and-sensors">Touch & Sensors</a></li>
+            <li><a class="google-track-navigation" href="/en-us/vcsource">Visual Computing</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li class="menu-item item-2">
+      Tools      <ul>
+        <li class="category item-1">
+          Developer Type          <ul>
+            <li><a class="google-track-navigation" href="/en-us/embedded-development-tools">Embedded Systems</a></li>
+            <li><a class="google-track-navigation" href="/en-us/vcsource/tools">Games & Media</a></li>
+            <li><a class="google-track-navigation" href="/en-us/developer-tools-technical-enterprise">Technical, Enterprise, HPC</a></li>
+            <li><a class="google-track-navigation" href="/en-us/html5">Web</a></li>
+          </ul>
+        </li>
+        <li class="category item-2">
+          OS          <ul>
+            <li><a class="google-track-navigation" href="/en-us/intel-sdp-home">All Tools</a></li>
+            <li><a class="google-track-navigation" href="/en-us/android">Android*</a></li>
+            <li><a class="google-track-navigation" href="/en-us/html5/tools">HTML5</a></li>
+            <li><a class="google-track-navigation" href="/en-us/linux-tool-suites">Linux*</a></li>
+            <li><a class="google-track-navigation" href="/en-us/intel-software-development-products-for-mac-os-x">OS X*</a></li>
+            <li><a class="google-track-navigation" href="/en-us/windows-tool-suites">Windows*</a></li>
+          </ul>
+        </li>
+        <li class="category item-3">
+          Product Support          <ul>
+            <li><a class="google-track-navigation" href="/en-us/intel-software-developer-support">Contact Support</a></li>
+            <li><a class="google-track-navigation" href="/en-us/intel-software-technical-documentation">Documentation</a></li>
+            <li><a class="google-track-navigation" href="/en-us/forum">Product Forums</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li class="menu-item item-3">
+      Resources      <ul>
+        <li class="category item-1">
+          Partner with Intel          <ul>
+            <li><a class="google-track-navigation" href="/en-us/academic">Academic Program</a></li>
+            <li><a class="google-track-navigation" href="/en-us/partner-home">Become a Partner</a></li>
+            <li><a class="google-track-navigation" href="/en-us/blackbelt">Black Belt Developer</a></li>
+            <li><a class="google-track-navigation" href="/en-us/business-network">Business Network</a></li>
+            <li><a class="google-track-navigation" href="/en-us/education-initiative">Education Initiative</a></li>
+            <li><a class="google-track-navigation" href="/en-us/success-stories">Success Stories</a></li>
+          </ul>
+        </li>
+        <li class="category item-2">
+          Learn          <ul>
+            <li><a class="google-track-navigation" href="/en-us/blogs">Blog</a></li>
+            <li><a class="google-track-navigation" href="/en-us/code-downloads">Code & Download</a></li>
+            <li><a class="google-track-navigation" href="/en-us/ux">User Experience</a></li>
+            <li><a class="google-track-navigation" href="/en-us/videos">Videos</a></li>
+          </ul>
+        </li>
+        <li class="category item-3">
+          Support          <ul>
+            <li><a class="google-track-navigation" href="/en-us/contact">Contact Support</a></li>
+            <li><a class="google-track-navigation" href="/en-us/faq">FAQs</a></li>
+            <li><a class="google-track-navigation" href="/en-us/forum">Forums</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <span class="mobile-icon-button search" data-icon="s"></span>
+    <section class="l-search">
+      <form action="/en-us/search/site" method="post" id="idz-search-block-form" accept-charset="UTF-8">
+  <div class="form-wrapper" id="idz_search_search_form">
+    <a id="search-dropdown" type="submit" name="op" value="" class="dropdown-toggle"></a>
+    <ul id="search-dropdown-options" class="dropdown-menu">
+      <li class="disabled"><a href="javascript:void(0)">Site to search:</a></li>
+      <li class="divider"></li>
+      <li><a class="active" href="javascript:void(0)" value="idz">Intel® DZ</a></li>
+      <li><a href="javascript:void(0)" value="intel">Intel.com</a></li>
+    </ul>
+    <input title="What can we help you find today?" placeholder="What can we help you find today?" class="form-text" type="text" id="edit-search-keyword" name="search_keyword" value="" size="15" maxlength="128">
+    <button class="form-submit dropdown-toggle" type="submit" id="edit-submit" name="op" value="Search"></button>
+  </div>
+</form>
+    </section>
+  </div>
+</header>
+<div id="page" class="container article  nodeid-493768">
+    
+  <div id="before-content">
+    <nav id="breadcrumb" class="has-content">
+              <h2 class="element-invisible">You are here</h2><div class="breadcrumb"><a href="/en-us">Home</a> &#8250; <a href="/en-us/search/site/?f[0]=bundle%3Aarticle">Articles</a> &#8250; Intel® Memory Latency Checker</div>          </nav>
+
+    
+      <div class="region region-secondary-content">
+    <div id="block-social-block-social-block" class="block block-social-block">
+  <div class="block-inner clearfix">
+                <div class="block-content content">
+      <div class="item-list"><ul><li class="facebook first"><a href="http://www.facebook.com/share.php?src=bm&amp;u=http%3A%2F%2Fsoftware.intel.com%2Fen-us%2Farticles%2Fintelr-memory-latency-checker" title="Facebook" data-social-action="Share" class="google-track-social">Facebook</a></li><li class="linkedin"><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fsoftware.intel.com%2Fen-us%2Farticles%2Fintelr-memory-latency-checker" title="LinkedIn" data-social-action="Share" class="google-track-social">LinkedIn</a></li><li class="twitter"><a href="http://twitter.com/share?url=http%3A%2F%2Fsoftware.intel.com%2Fen-us%2Farticles%2Fintelr-memory-latency-checker" title="Twitter" data-social-action="Tweet" class="google-track-social">Twitter</a></li><li class="digg"><a href="http://digg.com/submit/?phase=2&amp;url=http%3A%2F%2Fsoftware.intel.com%2Fen-us%2Farticles%2Fintelr-memory-latency-checker" title="Digg" data-social-action="Share" class="google-track-social">Digg</a></li><li class="delicious"><a href="http://del.icio.us/post?&amp;url=http%3A%2F%2Fsoftware.intel.com%2Fen-us%2Farticles%2Fintelr-memory-latency-checker" title="Delicious" data-social-action="Share" class="google-track-social">Delicious</a></li><li class="orkut"><a href="http://promote.orkut.com/preview?nt=orkut.com&amp;tt=Intel&amp;du=http%3A%2F%2Fsoftware.intel.com%2Fen-us%2Farticles%2Fintelr-memory-latency-checker" title="Orkut" data-social-action="Share" class="google-track-social">Orkut</a></li><li class="google_plus last"><a href="http://www.google.com/bookmarks/mark?op=add&amp;;title=http%3A%2F%2Fsoftware.intel.com%2Fen-us%2Farticles%2Fintelr-memory-latency-checker" title="Google Plus" data-social-action="Share" class="google-track-social">Google Plus</a></li></ul></div><div id="social-expander">&nbsp;</div>    </div>
+  </div>
+</div>
+  </div>
+      </div>
+
+  <div id="columns"><div class="columns-inner clearfix">
+    <div id="content-column"><div class="content-inner">
+
+      
+            <section id="main-content" role="main">
+
+                
+                  <header>
+                          <h1 id="page-title">Intel® Memory Latency Checker</h1>
+            
+                      </header>
+                        <div id="content">  <div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+  <div class="block-inner clearfix">
+                <div class="block-content content">
+      <article id="article-493768" class="article article-type-article clearfix" about="/en-us/articles/intelr-memory-latency-checker" typeof="sioc:Item foaf:Document" role="article">
+
+  
+      
+      <footer class="submitted">
+      <p class="author-datetime"><span property="dc:date dc:created" content="2013-11-21T16:15:23-08:00" datatype="xsd:dateTime" rel="sioc:has_creator">Submitted by <a href="/en-us/user/336994" title="View user profile." class="username" xml:lang="" about="/en-us/user/336994" typeof="sioc:UserAccount" property="foaf:name" datatype="">Vish Viswanatha...</a> on <time datetime="2013-11-21T16:15:23Z" pubdate="pubdate">Thu, 11/21/2013 - 16:15</time></span></p>
+    </footer>
+    <div class="article-content">
+  <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p><strong>Table of Contents</strong></p>
+
+<ol><li><a href="#Section 1" rel="nofollow">Contributors</a></li>
+	<li><a href="#Section 2" rel="nofollow">Introduction</a></li>
+	<li><a href="#Section3" rel="nofollow">How to use the tool</a></li>
+	<li><a href="#Section4" rel="nofollow">Command line parameters</a></li>
+	<li><a href="#Section5" rel="nofollow">Sample Usages</a></li>
+	<li><a href="#Section6" rel="nofollow">Download</a></li>
+</ol>
+
+1      <a name="Section 1" id="Section 1">Contributors</a>
+
+<p>Vish Viswanathan, Karthik Kumar, Thomas Willhalm</p>
+
+<a name="Section 2" id="Section 2">2      Introduction</a>
+
+<p>An important factor in determining application performance is the time required for the application to fetch data from the processor’s cache hierarchy and from the memory subsystem.  In a multi-socket system where Non-Uniform Memory Access (NUMA) is enabled, local memory latencies and cross-socket memory latencies will vary significantly. Local latencies may vary because even while referencing a cache line in local memory, the socket may need to send out snoops or refer a directory to verify if that cache line is present or modified in the other sockets’ memory nodes. Remote latency may vary depending on the Intel® QuickPath Interconnect (Intel® QPI) topology, the cache coherence protocol, the number of remote nodes, etc. Measuring these latencies is important to understand the topology and configuration of a system, to establish a baseline for the system under test, and for performance analysis.</p>
+
+<p>Intel® Memory Latency Checker (Intel® MLC) is a tool to measure memory latencies on an idle system. The tool prints out a matrix of the latencies to access local and remote memory nodes from all the sockets in the system. More advanced usages include options to measure specific configurations, cache latencies, etc.</p>
+
+<a name="Section3" id="Section3">3      How to use the tool</a>
+
+<p>This tool depends on the following for successful execution</p>
+
+<ul><li>GNU C library (glibc/lpthread) and libnuma are dynamically linked by the tool and need to be present on the system where this tool is run</li>
+	<li>The tool must be run with root privileges</li>
+	<li>MSR driver should be loaded. This can typically be done with 'modprobe msr' command if it is not already included.</li>
+</ul><p>When the tool is launched without any arguments, it automatically identifies the system topology, pins a thread to one core on each of the sockets, and measures latencies to memory that is located on each of the sockets.</p>
+
+<p><span>The tool also provides command line arguments to enable the user to selectively measure latencies and to have a fine grained control over how the latencies are measured.</span></p>
+
+<p><span>Here are some of the things that are possible with command line arguments:</span></p>
+
+<ul><li>Measure latencies for requests from a specific core and addressed to memory on a specific socket</li>
+	<li>Measure cache latencies</li>
+	<li>Measure latencies with randomized address requests</li>
+	<li>Measure latencies with different stride sizes for cache lines</li>
+</ul><a name="Section4" id="Section4">4      Command line parameters</a>
+
+<p>The tool uses the following terminology:</p>
+
+<ul><li>'core' denotes logical core</li>
+	<li>'socket' denotes processor socket/package/node</li>
+	<li>'memory node' denotes a distinct memory NUMA region, identifiable using numactl APIs</li>
+</ul><p><span>        <strong><em> mlc  [-cn]  [-tn]  [-in]  [-mn]  [-bn]  [-ln]  [pn1,n2,n3..]  [-L]  [-r]  [-nn]  [-v]</em></strong></span></p>
+
+<p><strong>-c</strong><span> : Pin the latency-measuring thread to core #n. All memory accesses will be initiated from this core irrespective of where the memory that is being addressed is located.</span></p>
+
+<p><strong>-t</strong><span> : Set the number of seconds over which this test will be run. The average access latency over this duration will be reported as the final result.</span></p>
+
+<p><strong>-i</strong><span> : Select where the requested memory resides. It identifies the core #n which will allocate the memory and initialize it. The thread that is allocating the memory will pin to this core, allocate the memory and do a first ‘touch’ of the memory.</span></p>
+
+<p><span>-</span><strong>m</strong><span>: Select memory node #n where the requested memory resides. If used, -i should not be used.</span></p>
+
+<p><strong>-b</strong><span> : Choose buffer size (specified in KB) that will be allocated. This buffer will be accessed in a loop and average latency measured. Depending on the size of the buffer, cache latencies can also be measured. For example, if a 3MB buffer is specified, it can fit nicely in the L3 cache and the latency reported would represent L3 cache hit latencies.</span></p>
+
+<p><strong>-l</strong><span> : Specify the stride length in bytes. Default is 64 bytes.</span></p>
+
+<p><strong>-pn1,n2,n3,.. : </strong><span>Specify a core number on each socket (in the form of comma separated core numbers) where a ‘dummy’ thread is executed to keep that core 100% active. The dummy thread executes a nop loop with no load or store accesses. Since current generation processors support aggressive power management, sockets with all idle cores operate at a low frequency to save power. This results in higher latencies for snoop responses. While measuring latencies, at least one core in each socket should therefore be kept 100% busy so that the uncore will be running at a higher frequency.</span></p>
+
+<p><strong>-L</strong><span> : Allocate buffer using hugetlbfs interface. The system should have already reserved enough 2MB pages to satisfy the allocation request.</span></p>
+
+<p><strong>-r</strong><span> : Initialize the buffer ‘randomly’ so the access pattern to memory will be random.</span></p>
+
+<p><strong>-n</strong><span> : Specify the number of iterations in millions. This option is used instead of –t option in case a fixed number of iterations is desired. For example, -n200 means 200 million iterations of the loop will be performed. If a value of zero is specified, then only one iteration will be used. This is useful for measuring clean directory reads on systems with directory support.</span></p>
+
+<p><strong>-v :</strong><span> Print verbose output during measurements</span></p>
+
+<a name="Section5" id="Section5">5      Sample Usages</a>
+
+<p><a name="section5.1" id="section5.1"><span>5.1  Default usage with no parameters</span></a></p>
+
+<p>                ./mlc</p>
+
+<p><span>The above command will measure local and cross-socket latencies for each of the sockets in the system. The output will be a matrix like the following</span></p>
+
+<p><img title="MLC sample output" src="http://software.intel.com/sites/default/files/managed/db/f6/MLC-sample-output.png" alt="" /></p>
+
+<p><a name="Section5.2" id="Section5.2"><span>5.2  Measuring remote memory latency from a specific core</span></a></p>
+
+<p>               ./mlc -b200000 -c0 -i8 -l64 -t3</p>
+
+<p>The above command allocates 200 Mbytes of memory on core #8 and initializes the entire buffer. This ensures that all the memory for this buffer is allocated from memory that is present on the same socket as core #8. Then requests are generated by a thread running on core #0 to access this memory. This test will run for 3 seconds and the average latency measured is reported.</p>
+
+<p><a name="Section5.3" id="Section5.3">5.3  Measuring latency while keeping all sockets active</a></p>
+
+<p>             ./mlc -b200000 -c0 -i8 -l64 -t3 -p8,16,24</p>
+
+<p>This is similar to the previous command but also keeps one core in each of the other sockets busy. In this example, core# 8, 16 and 24 are on sockets 1, 2 and 3 respectively.</p>
+
+<p><a name="Section5.4" id="Section5.4">5.4  Measuring L3 cache hit latency</a></p>
+
+<p>             ./mlc -b3000 -c0 -l64 -t3</p>
+
+<p>Since the buffer size is only 3MB, repeated accesses to the same buffer ensures that all the lines in this buffer will reside in last-level-cache. So, the latency measured would represent the last-level-cache hit latency</p>
+
+<p><a name="Section6" id="Section6">Download</a></p>
+</div></div></div><fieldset id="article-taxo-wrap" class="form-wrapper"><div class="fieldset-wrapper">Categories: <ul id="article-taxo-wrap-list">
+          <li class="field-item even">
+        <a href="/en-us/search/site/language/en?query=Server">Server</a>      </li>
+      
+
+          <li class="field-item even">
+        <a href="/en-us/search/site/language/en?query=Server">Server</a>      </li>
+      
+
+          <li class="field-item even">
+        <a href="/en-us/search/site/language/en?query=Developers">Developers</a>      </li>
+      
+
+          <li class="field-item even">
+        <a href="/en-us/search/site/language/en?query=Linux%2A">Linux*</a>      </li>
+      
+
+          <li class="field-item even">
+        <a href="/en-us/search/site/language/en?query=Advanced">Advanced</a>      </li>
+          <li class="field-item odd">
+        <a href="/en-us/search/site/language/en?query=Intermediate">Intermediate</a>      </li>
+      
+</ul></div></fieldset>
+<fieldset id="article-tags-wrap" class="form-wrapper"><div class="fieldset-wrapper">Tags: <ul id="article-tags-wrap-list">
+          <li class="field-item even" rel="dc:subject">
+        <a href="/en-us/search/site/field_tags/memory-latency-45427/language/en?query">Memory latency</a>      </li>
+          <li class="field-item odd" rel="dc:subject">
+        <a href="/en-us/search/site/field_tags/server-performance-45430/language/en?query">server performance</a>      </li>
+          <li class="field-item even" rel="dc:subject">
+        <a href="/en-us/search/site/field_tags/numa-17465/language/en?query">NUMA</a>      </li>
+          <li class="field-item odd" rel="dc:subject">
+        <a href="/en-us/search/site/field_tags/multi-socket-45433/language/en?query">multi-socket</a>      </li>
+          <li class="field-item even" rel="dc:subject">
+        <a href="/en-us/search/site/field_tags/cache-latency-45436/language/en?query">cache latency</a>      </li>
+      
+</ul></div></fieldset>
+<div class="field field-name-field-protected-attachments field-type-file field-label-hidden"><div class="field-items"><div class="field-item even"><div id="protected-dls">There are downloads available under the <a href="/en-us/node/494224">Basic Proprietary Commercial License</a> license. <a href="http://software.intel.com/protected-download/494224/493768" class="button-cta">Download</a></div></div></div></div>  </div>
+
+  
+  
+</article>    </div>
+  </div>
+</div>
+  </div>
+</div>
+        
+        <div class="optimization-notice">For more complete information about compiler optimizations, see our <a href="/en-us/articles/optimization-notice#opt-en">Optimization Notice</a>.</div>        
+                  <div id="button-links-wrap" class="clearfix"><div class="item-list"><ul class="links inline"><li class="comment"><a href="/en-us/user/login?destination=node/493768%23comment-form">Log in</a> to post comments</li></ul></div></div>
+        
+                  <div id="links-wrap" class="clearfix">
+                          <div id="links"></div>
+                                      <div class="rss-link"><a href="/en-us/articles/493768/comments-feed">RSS</a></div>
+                      </div>
+                <div class="clearfix"></div>
+                  <div id="comments"><div id="back-to-top"><a href="#">Back to Top</a></div>
+ <section id="comments" class="comment-wrapper">
+          <h2 class="comment-title title">
+      Comments    </h2>
+        <a id="comment-1774539"></a>
+
+<div id="node-493768"
+     class="forum-post clearfix en posted-by-823062 non-forum-post-comment"  about="/en-us/comment/1774539#comment-1774539" typeof="sioc:Post sioct:Comment">
+
+  
+    <div class="forum-post-wrapper1 D8CommentContainer row-with-author-and-content">
+
+    <div class="forum-post-panel-sub1 D8CommentThumb author-pane">
+              <div class="forum-user-picture">  <div class="user-picture">
+    <a href="/en-us/user/823062" title="View user profile."><img typeof="foaf:Image" src="/sites/all/themes/isn3/images/profile.jpg" alt="Black.S&#039;s picture" title="Black.S&#039;s picture" /></a>  </div>
+</div><div class="D8CommentThumbIcon"><img title="Status Points: 690 (Total Points: 720)" src="/sites/all/themes/isn3/images/belts/brown.gif" /></div>          </div>
+    <div class="forum-post-panel-main1 clearfix D8Comment content-pane">
+
+      <div class="forum-post-header">
+                <div class="comment-links">
+          <ul class="links inline"><li><span><a href="/en-us/user/login?destination=node/493768%23comment-form">Log in</a> to post comments</span></li></ul>        </div>
+        
+                  <div class="forum-post-author">
+            <a href="/en-us/user/823062">Black.S</a>          </div>
+        
+                  <div class="forum-post-date">
+            Fri, 12/13/2013 - 09:38          </div>
+              </div>
+      
+      <div class="forum-post-content">
+  	    <span rel="sioc:reply_of" resource="/en-us/articles/intelr-memory-latency-checker" class="rdf-meta"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p><span><span>This product</span> <span>will be distributed</span> <span>with</span> <span>open source</span><span> or only binary?</span> <span>Can I</span> <span>get the source code</span><span>?</span></span></p>
+</div></div></div>      </div> 
+      
+          </div>   </div>   <div class="forum-post-footer clearfix">
+    <div class="forum-jump-links">
+            <a href="#" title="Jump to top of page"
+         class="af-button-small"><span>Top</span></a>
+    </div>
+    <div class="forum-post-links">
+                            </div>
+  </div> </div> 
+
+<a id="comment-1774540"></a>
+
+<div id="node-493768"
+     class="forum-post clearfix en posted-by-823062 non-forum-post-comment"  about="/en-us/comment/1774540#comment-1774540" typeof="sioc:Post sioct:Comment">
+
+  
+    <div class="forum-post-wrapper1 D8CommentContainer row-with-author-and-content">
+
+    <div class="forum-post-panel-sub1 D8CommentThumb author-pane">
+              <div class="forum-user-picture">  <div class="user-picture">
+    <a href="/en-us/user/823062" title="View user profile."><img typeof="foaf:Image" src="/sites/all/themes/isn3/images/profile.jpg" alt="Black.S&#039;s picture" title="Black.S&#039;s picture" /></a>  </div>
+</div><div class="D8CommentThumbIcon"><img title="Status Points: 690 (Total Points: 720)" src="/sites/all/themes/isn3/images/belts/brown.gif" /></div>          </div>
+    <div class="forum-post-panel-main1 clearfix D8Comment content-pane">
+
+      <div class="forum-post-header">
+                <div class="comment-links">
+          <ul class="links inline"><li><span><a href="/en-us/user/login?destination=node/493768%23comment-form">Log in</a> to post comments</span></li></ul>        </div>
+        
+                  <div class="forum-post-author">
+            <a href="/en-us/user/823062">Black.S</a>          </div>
+        
+                  <div class="forum-post-date">
+            Fri, 12/13/2013 - 09:40          </div>
+              </div>
+      
+      <div class="forum-post-content">
+  	    <span rel="sioc:reply_of" resource="/en-us/articles/intelr-memory-latency-checker" class="rdf-meta"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p><span><span>Do</span> <span>you plan to</span> <span>support</span> <span>measuring latency</span> <span>mesif</span></span> <span><span>states ?</span></span></p>
+</div></div></div>      </div> 
+      
+          </div>   </div>   <div class="forum-post-footer clearfix">
+    <div class="forum-jump-links">
+            <a href="#" title="Jump to top of page"
+         class="af-button-small"><span>Top</span></a>
+    </div>
+    <div class="forum-post-links">
+                            </div>
+  </div> </div> 
+
+<a id="comment-1774542"></a>
+
+<div id="node-493768"
+     class="forum-post clearfix en posted-by-554363 non-forum-post-comment"  about="/en-us/comment/1774542#comment-1774542" typeof="sioc:Post sioct:Comment">
+
+  
+    <div class="forum-post-wrapper1 D8CommentContainer row-with-author-and-content">
+
+    <div class="forum-post-panel-sub1 D8CommentThumb author-pane">
+              <div class="forum-user-picture">  <div class="user-picture">
+    <a href="/en-us/user/554363" title="View user profile."><img typeof="foaf:Image" src="/sites/all/themes/isn3/images/profile.jpg" alt="Karthik Kumar (Intel)&#039;s picture" title="Karthik Kumar (Intel)&#039;s picture" /></a>  </div>
+</div>          </div>
+    <div class="forum-post-panel-main1 clearfix D8Comment content-pane">
+
+      <div class="forum-post-header">
+                <div class="comment-links">
+          <ul class="links inline"><li><span><a href="/en-us/user/login?destination=node/493768%23comment-form">Log in</a> to post comments</span></li></ul>        </div>
+        
+                  <div class="forum-post-author">
+            <a href="/en-us/user/554363">Karthik Kumar (Intel)</a>          </div>
+        
+                  <div class="forum-post-date">
+            Fri, 12/13/2013 - 10:04          </div>
+              </div>
+      
+      <div class="forum-post-content">
+  	    <span rel="sioc:reply_of" resource="/en-us/articles/intelr-memory-latency-checker" class="rdf-meta"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>@ Black- at this point, the product is binary only.</p>
+</div></div></div>      </div> 
+      
+          </div>   </div>   <div class="forum-post-footer clearfix">
+    <div class="forum-jump-links">
+            <a href="#" title="Jump to top of page"
+         class="af-button-small"><span>Top</span></a>
+    </div>
+    <div class="forum-post-links">
+                            </div>
+  </div> </div> 
+
+<a id="comment-1774548"></a>
+
+<div id="node-493768"
+     class="forum-post clearfix en posted-by-336994 post-by-starter non-forum-post-comment"  about="/en-us/comment/1774548#comment-1774548" typeof="sioc:Post sioct:Comment">
+
+  
+    <div class="forum-post-wrapper1 D8CommentContainer row-with-author-and-content">
+
+    <div class="forum-post-panel-sub1 D8CommentThumb author-pane">
+              <div class="forum-user-picture">  <div class="user-picture">
+    <a href="/en-us/user/336994" title="View user profile."><img typeof="foaf:Image" src="/sites/all/themes/isn3/images/profile.jpg" alt="Vish Viswanathan (Intel)&#039;s picture" title="Vish Viswanathan (Intel)&#039;s picture" /></a>  </div>
+</div><div class="D8CommentThumbIcon"><img title="Status Points: 85 (Total Points: 90)" src="/sites/all/themes/isn3/images/belts/green.gif" /></div>          </div>
+    <div class="forum-post-panel-main1 clearfix D8Comment content-pane">
+
+      <div class="forum-post-header">
+                <div class="comment-links">
+          <ul class="links inline"><li><span><a href="/en-us/user/login?destination=node/493768%23comment-form">Log in</a> to post comments</span></li></ul>        </div>
+        
+                  <div class="forum-post-author">
+            <a href="/en-us/user/336994">Vish Viswanathan (Intel)</a>          </div>
+        
+                  <div class="forum-post-date">
+            Fri, 12/13/2013 - 10:37          </div>
+              </div>
+      
+      <div class="forum-post-content">
+  	    <span rel="sioc:reply_of" resource="/en-us/articles/intelr-memory-latency-checker" class="rdf-meta"></span><div class="field field-name-comment-body field-type-text-long field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>@Black S - We don't have any plans to release a tool to measure latencies at mesif states</p>
+<p> </p>
+</div></div></div>      </div> 
+      
+          </div>   </div>   <div class="forum-post-footer clearfix">
+    <div class="forum-jump-links">
+            <a href="#" title="Jump to top of page"
+         class="af-button-small"><span>Top</span></a>
+    </div>
+    <div class="forum-post-links">
+                            </div>
+  </div> </div> 
+
+<div id="D8LeaveComment">
+  </section>
+</div>
+                               
+      </section>
+
+      
+    </div></div>
+
+        
+  </div></div>
+</div>
+
+  <footer class="l-legal-footer">
+  <nav class="menu">
+    <ul>
+      <li><a class="google-track-navigation" href="http://www.intel.com/content/www/us/en/legal/terms-of-use.html">Terms of Use</a></li>
+      <li><a class="google-track-navigation" href="http://www.intel.com/content/www/us/en/legal/trademarks.html">*Trademarks</a></li>
+      <li><a class="google-track-navigation" href="http://www.intel.com/content/www/us/en/privacy/intel-online-privacy-notice-summary.html">Privacy</a></li>
+      <li><a class="google-track-navigation" href="http://www.intel.com/content/www/us/en/privacy/intel-cookie-notice.html">Cookies</a></li>
+      <li class="menu-item drop-up">Publications        <ul>
+          <li><a class="google-track-navigation" href="http://software.intel.com/sites/billboard/isa-magazine">Intel® Software Adrenaline Magazine</a></li>
+          <li><a class="google-track-navigation" href="/en-us/intel-parallel-universe-magazine">Intel® Parallel Universe Magazine</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</footer>
+
+  <footer class="l-language-footer">
+  <div class="limiter">
+    <section class="look-for-intel">
+      <span id="look-for-intel-expander"></span>
+      <span class="blurb">Look for us on:</span>
+      <div class="item-list">
+        <ul>
+                      <li class="facebook first">
+              <a target="_blank" href="http://facebook.com/inteldeveloperzone" title="Facebook" data-icon="Z">Facebook</a>
+            </li>
+            <li class="twitter">
+              <a target="_blank" href="http://twitter.com/intelsoftware" title="Twitter" data-icon="X">Twitter</a>
+            </li>
+                    <li class="linkedin">
+          <a target="_blank" href="http://www.linkedin.com/groups/Intel-Developer-Zone-3078126" title="LinkedIn" data-icon="+">LinkedIn</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="language-selector">
+      <ul class="language-switcher-locale-url"><li><a href="/en-us/articles/intelr-memory-latency-checker" class="language-link active" lang="en">English</a></li><li><a href="/zh-cn/articles/intelr-memory-latency-checker" class="language-link" lang="zh-hans">简体中文</a></li><li><a href="/fr-fr/articles/intelr-memory-latency-checker" class="language-link" lang="fr">Français</a></li><li><a href="/ru-ru/articles/intelr-memory-latency-checker" class="language-link" lang="ru">Русский</a></li><li><a href="/es-es/articles/intelr-memory-latency-checker" class="language-link" lang="es">Español</a></li><li><a href="/pt-br/articles/intelr-memory-latency-checker" class="language-link" lang="pt-br">Português</a></li><li><a href="/de-de/articles/intelr-memory-latency-checker" class="language-link" lang="de">Deutsch</a></li><li><a href="/it-it/articles/intelr-memory-latency-checker" class="language-link" lang="it">Italiano</a></li></ul>    </section>
+  </div>
+</footer>
+
+  <script src="http://software.intel.com/sites/default/files/js/js_7SdOkWgZ-9QM6SgX51mqS6q2fzWlnhVIdeLpf8q4rCE.js"></script>
+  <div id='ZN_0677ZkA58MonfDL'></div><!--Qualtrics metrics. Required by intel_metrics module -->
+<script type="text/javascript">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script");e.type="text/javascript";e.src=(("http:"===document.location.protocol)?"http:":"https:")+"//"+"js-agent.newrelic.com/nr-100.js";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-1.newrelic.com","aca265f578","682579","ZlADZEtYCxJQBU0KC18aNEJQFgwPVQNBTRRZRQ==",0,50,new Date().getTime(),"","","","",""]);</script></body>
+</html>
