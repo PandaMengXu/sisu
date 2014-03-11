@@ -1,0 +1,3 @@
+1) rdtsc may be reorderd! need to use cpuid to seperate it
+2) rdtsc may be incorrect or not have enough precise in virtualization environment!
+3) page allign: may be because of page fault in the program. Remember to free the unused memory block first!
