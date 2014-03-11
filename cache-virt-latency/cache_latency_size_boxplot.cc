@@ -71,6 +71,6 @@ int main(int argc, char** argv)
 
     // Res
 	printf("%lld %lld\n", dur1, dur1/row);
-
+	delete[] buffer;
 	return 0;
 }
