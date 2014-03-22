@@ -32,7 +32,8 @@ rm -rf ../data/cache_latency_size/$1_*.out
 
 
 
-for i in 1 2 3 4 5 6 7 8 9 10
+#for i in 1 2 3 4 5 6 7 8 9 10
+for i in 1
 do
 	for ((j = 1; j <= 1000; j++))
 	do
