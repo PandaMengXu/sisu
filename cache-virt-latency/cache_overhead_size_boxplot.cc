@@ -22,29 +22,37 @@ static __inline__ unsigned long long rdtsc(void)
 }
 #endif
 
-#define CACHE_LINE_SIZE	64
+#define CACHE_LINE_SIZE 64
 
 #define WSS 24567 /* 24 Mb */
 #define NUM_VARS WSS * 1024 / sizeof(long)
 
-#define KHZ	3500000
+#define KHZ 3500000
+
+#define POLLUTER_KB    256
 
 // ./a.out memsize(in KB)
 int main(int argc, char** argv)
 {
-	unsigned long mem_size_KB = atol(argv[1]);  // mem size in KB
-	unsigned long mem_size_B  = mem_size_KB * 1024;	// mem size in Byte
+    unsigned long mem_size_KB = atol(argv[1]);  // mem size in KB
+    unsigned long mem_size_B  = mem_size_KB * 1024; // mem size in Byte
     unsigned long count       = mem_size_B / sizeof(long);
     unsigned long row         = mem_size_B / CACHE_LINE_SIZE;
     int           col         = CACHE_LINE_SIZE / sizeof(long);
+    unsigned long polluter_mem_size_B = POLLUTER_KB * 1024;
+    unsigned long polluter_count = polluter_mem_size_B / sizeof(long);
+    unsigned long polluter_row = polluter_mem_size_B / CACHE_LINE_SIZE;
+    int           polluter_col = CACHE_LINE_SIZE / sizeof(long);
     
     unsigned long long start, finish, dur1;
     unsigned long temp;
 
     long *buffer;
+    long *polluter;
     buffer = new long[count];
+    polluter = new long[polluter_count];
 
-    // init array
+    // init array buffer
     for (unsigned long i = 0; i < count; ++i)
         buffer[i] = i;
 
@@ -53,13 +61,23 @@ int main(int argc, char** argv)
         swap(buffer[i*col], buffer[temp*col]);
     }
 
-    // warm the cache again
-    temp = buffer[0];
-    for (unsigned long i = 0; i < row-1; ++i) {
-        temp = buffer[temp];
+
+    // init array polluter
+    for (unsigned long i = 0; i < polluter_count; ++i)
+        polluter[i] = i;
+
+    for (unsigned long i = polluter_row-1; i >0; --i) {
+        temp = rand()%i;
+        swap(polluter[i*col], polluter[temp*col]);
     }
 
-    // First read, should be cache hit
+    // pollute the cache
+    temp = polluter[0];
+    for (unsigned long i = 0; i < 2*row-1; ++i) {
+        temp = polluter[temp];
+    }
+
+    // First read, should be cache miss //use this to minus cache hit is cache overhead
     temp = buffer[0];
     start = rdtsc();
     int sum = 0;
