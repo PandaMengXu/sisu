@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <string>
 #include <ctime>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 using namespace std;
 
@@ -45,6 +47,8 @@ int main(int argc, char** argv)
     long *buffer;
     buffer = new long[count];
 
+    setpriority(PRIO_PROCESS, 0, -20);
+
     // init array
     for (unsigned long i = 0; i < count; ++i)
         buffer[i] = i;
@@ -62,24 +66,25 @@ int main(int argc, char** argv)
 
     // First read, should be cache hit
     temp = buffer[0];
-    start = rdtsc();
-    int sum = 0;
-    for(int wcet_i = 0; wcet_i < wcet; wcet_i++)
-    {
-        for(int j=0; j<21; j++)
+//    for(int run_i = 0; run_i < 100000; run_i++){
+        start = rdtsc();
+        int sum = 0;
+        for(int wcet_i = 0; wcet_i < wcet; wcet_i++)
         {
-            for (unsigned long i = 0; i < row-1; ++i) {
-                if (i%2 == 0) sum += buffer[temp];
-                else sum -= buffer[temp];
-                temp = buffer[temp];
+            for(int j=0; j<21; j++)
+            {
+                for (unsigned long i = 0; i < row-1; ++i) {
+                    if (i%2 == 0) sum += buffer[temp];
+                    else sum -= buffer[temp];
+                    temp = buffer[temp];
+                }
             }
         }
-    }
-    finish = rdtsc();
-    dur1 = finish-start;
-
-    // Res
-    printf("%lld %lld %.6f\n", dur1, dur1/row, dur1*1.0/KHZ);
+        finish = rdtsc();
+        dur1 = finish-start;
+        // Res
+        printf("%lld %lld %.6f\n", dur1, dur1/row, dur1*1.0/KHZ);
+//    }
     delete[] buffer;
     return 0;
 }

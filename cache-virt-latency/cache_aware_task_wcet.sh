@@ -32,10 +32,11 @@ rm -rf ../data/cache_latency_size/$1_*.out
 
 
 
-for i in 1
+for i in 1 2 3 4 5 6 7 8 9 10
 do
 	for ((j = 1; j <= 1000; j++))
 	do
+        #chrt -f -p 99 `./cache_aware_task_wcet $i >> cache_aware_task_wcet_$1_$i.out`
 	   	sudo taskset 0x01 ./cache_aware_task_wcet $i >> cache_aware_task_wcet_$1_$i.out
 	done
 	echo -n "done for size $i at "
