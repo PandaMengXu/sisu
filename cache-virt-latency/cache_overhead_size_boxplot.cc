@@ -73,8 +73,8 @@ int main(int argc, char** argv)
 
     // pollute the cache
     temp = polluter[0];
-    for (unsigned long i = 0; i < 2*row-1; ++i) {
-        temp = polluter[temp];
+    for (unsigned long i = 0; i < polluter_row-1; ++i) {
+        polluter[i] = polluter[i]*2;
     }
 
     // First read, should be cache miss //use this to minus cache hit is cache overhead
@@ -92,5 +92,6 @@ int main(int argc, char** argv)
     // Res
     printf("%lld %lld %.2f\n", dur1, dur1/row, dur1*1.0/KHZ);
     delete[] buffer;
+    delete[] polluter;
     return 0;
 }

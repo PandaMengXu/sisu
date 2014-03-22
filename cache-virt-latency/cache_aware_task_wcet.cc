@@ -32,8 +32,9 @@ static __inline__ unsigned long long rdtsc(void)
 // ./a.out memsize(in KB)
 int main(int argc, char** argv)
 {
-	unsigned long mem_size_KB = atol(argv[1]);  // mem size in KB
-	unsigned long mem_size_B  = mem_size_KB * 1024;	// mem size in Byte
+    unsigned long wcet = atol(argv[1]);
+    unsigned long mem_size_KB = 256;  // mem size in KB
+    unsigned long mem_size_B  = mem_size_KB * 1024;	// mem size in Byte
     unsigned long count       = mem_size_B / sizeof(long);
     unsigned long row         = mem_size_B / CACHE_LINE_SIZE;
     int           col         = CACHE_LINE_SIZE / sizeof(long);
@@ -63,10 +64,16 @@ int main(int argc, char** argv)
     temp = buffer[0];
     start = rdtsc();
     int sum = 0;
-    for (unsigned long i = 0; i < row-1; ++i) {
-        if (i%2 == 0) sum += buffer[temp];
-        else sum -= buffer[temp];
-        temp = buffer[temp];
+    for(int wcet_i = 0; wcet_i < wcet; wcet_i++)
+    {
+        for(int j=0; j<21; j++)
+        {
+            for (unsigned long i = 0; i < row-1; ++i) {
+                if (i%2 == 0) sum += buffer[temp];
+                else sum -= buffer[temp];
+                temp = buffer[temp];
+            }
+        }
     }
     finish = rdtsc();
     dur1 = finish-start;
