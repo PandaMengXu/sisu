@@ -1,0 +1,10 @@
+xentrace, xenalyze
+
+
+ubuntu has a device which is a memory but appears to be a device! write to this part to avoid too much trace oh. When you write trace, write to memory!
+
+xentrace
+In sisu code: schedule.c
+
+xenalyze
+http://blog.xen.org/index.php/2012/09/27/tracing-with-xentrace-and-xenalyze/

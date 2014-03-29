@@ -1,0 +1,1 @@
+xenalyze --dump-raw-read ~/Desktop/data/overhead/$1.bin > ~/Desktop/data/overhead/$1.out
